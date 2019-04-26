@@ -10,5 +10,19 @@ links = ['http://abcnews.go.com/', 'http://www.cnn.com/', 'http://www.nbcnews.co
 
 #Try to look through these sites for a name/event.
 
-import urllib2
+from urllib import urlopen
 from BeautifulSoup import BeautifulSoup
+import re
+
+webpage = urlopen('https://www.pythonforbeginners.com/python-on-the-web/scraping-websites-with-beautifulsoup/').read()
+
+soup2 = BeautifulSoup(webpage)
+
+#print soup2.findAll("title")
+
+titleSoup = soup2.findAll("title")
+
+linkSoup = soup2.findAll("link")
+#Cycle through the links:
+for site in links:
+    page = urlopen(str(site))
